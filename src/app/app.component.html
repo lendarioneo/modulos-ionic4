@@ -1,3 +1,20 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<ion-split-pane contentId="content-menu-id" when="sm">
+    <ion-menu contentId="content-menu-id" menuId="{{this.menuId}}">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Menu</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list lines="none">
+                <ion-menu-toggle autoHide="false">
+                    <ion-item *ngFor="let page of pages" button [routerLink]="page.url">
+                      <ion-icon slot="start" name="{{page.icon}}"></ion-icon>
+                      <ion-label>{{page.name}}</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="content-menu-id"></ion-router-outlet>
+</ion-split-pane>

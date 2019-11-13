@@ -1,13 +1,16 @@
-import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 declare var google;
 
 @Component({
-    selector: 'app-home',
-    templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
+    selector: 'app-simple-map',
+    templateUrl: './simple-map.page.html',
+    styleUrls: ['./simple-map.page.scss'],
 })
-export class HomePage implements OnInit, AfterContentInit {
+export class SimpleMapPage implements OnInit, AfterContentInit {
+
+    title: string;
 
     public map;
     @ViewChild('mapElement', null) mapElement;
@@ -16,9 +19,12 @@ export class HomePage implements OnInit, AfterContentInit {
     }
 
     ngOnInit(): void {
+
+
     }
 
     ngAfterContentInit(): void {
+
         this.map = new google.maps.Map(
             this.mapElement.nativeElement, {
                 center: {
