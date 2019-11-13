@@ -1,0 +1,14 @@
+Configuração e utilização da API GOOGLE MAPS
+1. Primeiramente é necessário gerar uma chave (api key) no site developers do Google. Lá é necessário ativar as APIS que
+queremos usar.
+2. Devemos fazer uma inclusão de uma tag script no Index.html com a seguinte configuração:
+ <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY_GOOGLE_MAPS"></script>
+
+3.É preciso adicionar a instrução "declare var google" no codigo da página antes do inicio do escopo da classe
+ onde se quer carregar o mapa.
+
+4. É preciso criar um id #mapElement no template e referenciar no component.ts
+
+5. é preciso implementar o ngAfterContentInit() que permite renderizar o mapa antes da tela ser criada.
+
+6. O mapa precisa ser criado (new) a partir da API do MAPS.
