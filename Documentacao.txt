@@ -6,3 +6,4 @@ ionic cordova plugin add cordova-plugin-geolocation && npm install @ionic-native
 4. incluir no Appmodule "import {Geolocation} from '@ionic-native/geolocation/ngx' ";
 5. Importar o provider Geolocation dentro do construtor da pagina.
 6. Incluir um atributo, latitude e longitude;
+

@@ -8,7 +8,7 @@
         <ion-content>
             <ion-list lines="none">
                 <ion-menu-toggle autoHide="false">
-                    <ion-item *ngFor="let page of pages" button [routerLink]="page.url">
+                    <ion-item *ngFor="let page of pages" button (click)="goTo(page.url, page.name)">
                       <ion-icon slot="start" name="{{page.icon}}"></ion-icon>
                       <ion-label>{{page.name}}</ion-label>
                     </ion-item>

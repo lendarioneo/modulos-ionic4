@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {GeolocationPage} from './geolocation.page';
 import {SharedModule} from '../../shared/shared.module';
+import {HeaderPageModule} from '../../components/header-page/header-page.module';
 
 const routes: Routes = [
     {
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
     imports: [
         SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        HeaderPageModule
     ],
     declarations: [GeolocationPage]
 })

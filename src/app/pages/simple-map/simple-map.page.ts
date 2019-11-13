@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 declare var google;
 
@@ -10,17 +10,23 @@ declare var google;
 })
 export class SimpleMapPage implements OnInit, AfterContentInit {
 
-    title: string;
+    title: string = 'Mapa simples';
 
     public map;
     @ViewChild('mapElement', null) mapElement;
 
-    constructor() {
+    constructor(private activatedRoute: ActivatedRoute,private router: Router) {
+
     }
 
     ngOnInit(): void {
-
-
+        this.activatedRoute.queryParams.subscribe(params => {
+            let getNav = this.router.getCurrentNavigation();
+            if (getNav.extras.state){
+                this.title = getNav.extras.state.title;
+                console.log(this.title);
+            }
+        })
     }
 
     ngAfterContentInit(): void {

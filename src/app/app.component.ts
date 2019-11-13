@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {NavController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {NavigationExtras} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -10,7 +11,6 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
     styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-
     menuId = 'main-menu';
     pages: {
         url: string,
@@ -37,5 +37,14 @@ export class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
+    }
+
+    async goTo(url: string, title: string) {
+        let navigationExtras: NavigationExtras = {
+            state: {
+                title: title
+            }
+        };
+        await this.navCtrl.navigateForward([url], navigationExtras);
     }
 }

@@ -1,5 +1,6 @@
 import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import {ActivatedRoute, Router} from '@angular/router';
 
 declare const google;
 
@@ -16,15 +17,25 @@ export class GeolocationPage implements OnInit, AfterContentInit {
     // map: any;
 
     /* Atributo responsável por guardar a posição atual do dispositivo*/
-    latitude: any;
-    longitude: any;
+    latitude: number;
+    longitude: number;
 
     @ViewChild('mapElement', null) mapNativeElement: ElementRef;
 
-    constructor(private geolocation: Geolocation) {
+    constructor(
+        private geolocation: Geolocation,
+        private activatedRoute: ActivatedRoute,
+        private router: Router) {
     }
 
     ngOnInit() {
+        this.activatedRoute.queryParams.subscribe(params => {
+            let getNav = this.router.getCurrentNavigation();
+            if (getNav.extras.state) {
+                this.title = getNav.extras.state.title;
+                console.log(this.title);
+            }
+        });
     }
 
     ngAfterContentInit(): void {
@@ -43,10 +54,10 @@ export class GeolocationPage implements OnInit, AfterContentInit {
                     this.mapNativeElement.nativeElement,
                     {
                         center: {
-                            latitude: -1.363779,
-                            longitude: -48.401060
+                            latitude: this.latitude,
+                            longitude: this.longitude
                         },
-                        zoom: 8
+                        zoom: 12
                     }
                 );
 
@@ -61,9 +72,9 @@ export class GeolocationPage implements OnInit, AfterContentInit {
 
                 /* O Balão informativo recebe a posicao*/
                 infoWindow.setPosition(pos);
-                infoWindow.setContent('Sua Localização');
+                infoWindow.setContent(`Sua Localização`);
                 infoWindow.open(map);
-                map.setCenter(pos);
+                map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
             })
             .catch(error => {
                 console.log('Error getting location ', error);
