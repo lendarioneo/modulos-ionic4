@@ -19,6 +19,10 @@ const routes: Routes = [
         path: 'custom-marker',
         loadChildren: () => import('./pages/custom-marker/custom-marker.module').then(m => m.CustomMarkerPageModule)
     },
+    {
+        path: 'directions', loadChildren: () => import('./pages/directions/directions.module').then(m => m.DirectionsPageModule)
+    },
+
 ];
 
 @NgModule({

@@ -3,8 +3,8 @@
  * Date: 2019/11/13
  */
 
-import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Coordinates, Geolocation} from '@ionic-native/geolocation/ngx';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Router} from '@angular/router';
 
 declare var google;
@@ -14,7 +14,7 @@ declare var google;
     templateUrl: './custom-marker.page.html',
     styleUrls: ['./custom-marker.page.scss'],
 })
-export class CustomMarkerPage implements OnInit, AfterContentInit {
+export class CustomMarkerPage implements OnInit, AfterViewInit {
 
     title: string = 'Marcador Customizado';
 
@@ -37,7 +37,7 @@ export class CustomMarkerPage implements OnInit, AfterContentInit {
         this.getExtras();
     }
 
-    ngAfterContentInit(): void {
+    ngAfterViewInit(): void {
         this.initMap();
     }
 

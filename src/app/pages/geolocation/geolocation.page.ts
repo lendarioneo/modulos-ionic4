@@ -3,7 +3,7 @@
  * Date: 2019/11/13
  */
 
-import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {Router} from '@angular/router';
 
@@ -14,7 +14,7 @@ declare const google;
     templateUrl: './geolocation.page.html',
     styleUrls: ['./geolocation.page.scss'],
 })
-export class GeolocationPage implements OnInit, AfterContentInit {
+export class GeolocationPage implements OnInit, AfterViewInit {
 
     title: string = 'Geolocalização';
 
@@ -38,7 +38,7 @@ export class GeolocationPage implements OnInit, AfterContentInit {
         this.getExtras();
     }
 
-    ngAfterContentInit(): void {
+    ngAfterViewInit(): void {
         this.initMap();
     }
 
