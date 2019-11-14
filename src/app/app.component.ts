@@ -32,7 +32,8 @@ export class AppComponent {
             {name: 'Mapa Simples', url: '/simple-map', icon: 'map'},
             {name: 'Geolocalização', url: '/geolocation', icon: 'locate'},
             {name: 'Marcador Customizado', url: '/custom-marker', icon: 'pin'},
-            {name: 'Direções', url: '/directions', icon: 'navigate'}
+            {name: 'Direções', url: '/directions', icon: 'navigate'},
+            {name: 'Distância', url: '/distance', icon: 'car'}
         ];
 
         this.platform.ready().then(() => {

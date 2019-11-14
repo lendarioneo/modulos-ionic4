@@ -1,16 +1,16 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 
-declare const google;
+declare var google;
 
 @Component({
-    selector: 'app-directions',
-    templateUrl: './directions.page.html',
-    styleUrls: ['./directions.page.scss'],
+    selector: 'app-distance',
+    templateUrl: './distance.page.html',
+    styleUrls: ['./distance.page.scss'],
 })
-export class DirectionsPage implements OnInit, AfterViewInit {
+export class DistancePage implements OnInit, AfterViewInit {
 
     @ViewChild('mapElement', null) mapElement: ElementRef;
 
@@ -18,9 +18,9 @@ export class DirectionsPage implements OnInit, AfterViewInit {
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsForm: FormGroup;
-    myPosition: {
-        latitude: number,
-        longitude: number
+    myPosition = {
+        lat: 0,
+        lng: 0
     };
 
     constructor(
@@ -47,8 +47,8 @@ export class DirectionsPage implements OnInit, AfterViewInit {
         this.geolocation.getCurrentPosition()
             .then(resp => {
                 this.myPosition = {
-                    longitude: resp.coords.longitude,
-                    latitude: resp.coords.latitude
+                    lng: resp.coords.longitude,
+                    lat: resp.coords.latitude
                 };
 
                 /* Define os parametros do mapa como o elemento grafico que vai ficar o mapa, lat e long inicial e zoom*/
@@ -56,16 +56,16 @@ export class DirectionsPage implements OnInit, AfterViewInit {
                     this.mapElement.nativeElement, {
                         zoom: 14,
                         center: {
-                            latitude: this.myPosition.latitude,
-                            longitude: this.myPosition.longitude
+                            latitude: this.myPosition.lat,
+                            longitude: this.myPosition.lng
                         }
                     }
                 );
 
                 /* Define a posição que o marcador vai iniciar o marcador */
                 const pos = {
-                    lat: this.myPosition.latitude,
-                    lng: this.myPosition.longitude
+                    lat: this.myPosition.lat,
+                    lng: this.myPosition.lng
                 };
 
                 map.setCenter(new google.maps.LatLng({lat: pos.lat, lng: pos.lng}));
@@ -82,7 +82,7 @@ export class DirectionsPage implements OnInit, AfterViewInit {
 
     private createDirectionForm() {
         this.directionsForm = this.formBuilder.group({
-            source: ['', Validators.required],
+            //source: ['', Validators.required],
             destination: ['', Validators.required]
         });
     }
@@ -91,7 +91,7 @@ export class DirectionsPage implements OnInit, AfterViewInit {
         const that = this;
 
         let parameterRoute = {
-            origin: formsValues.source,
+            origin: this.myPosition,
             destination: formsValues.destination,
             travelMode: 'DRIVING'
         };

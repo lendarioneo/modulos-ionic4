@@ -20,8 +20,14 @@ const routes: Routes = [
         loadChildren: () => import('./pages/custom-marker/custom-marker.module').then(m => m.CustomMarkerPageModule)
     },
     {
-        path: 'directions', loadChildren: () => import('./pages/directions/directions.module').then(m => m.DirectionsPageModule)
+        path: 'directions',
+        loadChildren: () => import('./pages/directions/directions.module').then(m => m.DirectionsPageModule)
     },
+    {
+        path: 'distance',
+        loadChildren: () => import('./pages/distance/distance.module').then(m => m.DistancePageModule)
+    }
+
 
 ];
 

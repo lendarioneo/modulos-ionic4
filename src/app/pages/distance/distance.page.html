@@ -1,0 +1,18 @@
+<header-page-component [title]="title"></header-page-component>
+
+<ion-content>
+  <form [formGroup]="directionsForm" (ngSubmit)="calculateAndDisplayRoute(directionsForm.value)">
+<!--    <ion-item>-->
+<!--      <ion-label>De</ion-label>-->
+<!--      <ion-input formControlName="source"></ion-input>-->
+<!--    </ion-item>-->
+    <ion-item>
+      <ion-label>Para</ion-label>
+      <ion-input formControlName="destination"></ion-input>
+    </ion-item>
+    <div class="ion-text-center">
+      <ion-button size="small" color="success" type="submit" [disabled]="directionsForm.invalid">Definir Rota</ion-button>
+    </div>
+  </form>
+  <div #mapElement class="map"></div>
+</ion-content>
