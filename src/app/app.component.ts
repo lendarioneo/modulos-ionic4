@@ -30,7 +30,8 @@ export class AppComponent {
     initializeApp() {
         this.pages = [
             {name: 'Mapa Simples', url: '/simple-map', icon: 'map'},
-            {name: 'Geolocalizacao', url: '/geolocation', icon: 'locate'}
+            {name: 'Geolocalização', url: '/geolocation', icon: 'locate'},
+            {name: 'Marcador Customizado', url: '/custom-marker', icon: 'pin'}
         ];
 
         this.platform.ready().then(() => {
