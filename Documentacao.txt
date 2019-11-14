@@ -1,0 +1,9 @@
+Configuração de Geolocalizao com Ionic
+1. Primeiro passo é instalar os componentes tanto do ionic quanto do cordova com o seguinte comando
+ionic cordova plugin add cordova-plugin-geolocation && npm install @ionic-native/geolocation
+2. Configurar a API_KEY do MAPS no index.html
+3. Incluir as tags especificas do maps no template da pagina
+4. incluir no Appmodule "import {Geolocation} from '@ionic-native/geolocation/ngx' ";
+5. Importar o provider Geolocation dentro do construtor da pagina.
+6. Incluir um atributo, latitude e longitude;
+
